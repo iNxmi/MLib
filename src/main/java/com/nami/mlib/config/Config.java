@@ -31,6 +31,12 @@ public record Config(File file, Map<String, Object> map) {
         return new AbstractGetter(map().get(key));
     }
 
+    public void setValues(Value... values) throws IOException {
+        for (Value v : values)
+            map().replace(v.key(), v.value());
+        write();
+    }
+
     public void setValues(List<Value> values) throws IOException {
         for (Value v : values)
             map().replace(v.key(), v.value());
