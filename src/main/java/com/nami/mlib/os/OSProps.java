@@ -1,11 +1,11 @@
 package com.nami.mlib.os;
 
-import com.nami.mlib.Folder;
+import com.nami.mlib.Directory;
 
 public class OSProps {
 
     public static OS OS;
-    public static Folder FOLDER_ROOT;
+    public static Directory FOLDER_ROOT;
 
     public static boolean init(String applicationName) {
         String os = System.getProperty("os.name").toLowerCase();
@@ -31,21 +31,21 @@ public class OSProps {
     public enum OS {
         WINDOWS((applicationName) -> {
             String path = String.format("%s/%s", System.getenv("APPDATA"), applicationName);
-            FOLDER_ROOT = new Folder(path);
+            FOLDER_ROOT = new Directory(path);
 
             return true;
         }),
 
         MAC((applicationName) -> {
             String path = String.format("%s/%s", System.getProperty("user.home"), applicationName);
-            FOLDER_ROOT = new Folder(path);
+            FOLDER_ROOT = new Directory(path);
 
             return true;
         }),
 
         UNIX((applicationName) -> {
             String path = String.format("%s/%s", System.getProperty("user.home"), applicationName);
-            FOLDER_ROOT = new Folder(path);
+            FOLDER_ROOT = new Directory(path);
 
             return true;
         }),

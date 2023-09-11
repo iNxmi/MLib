@@ -1,10 +1,10 @@
 package com.nami.mlib.usb;
 
-import com.nami.mlib.Folder;
+import com.nami.mlib.Directory;
 
 public interface GlobalUSBListener {
 
-    void onUSBInsertEvent(Folder drive);
+    void onUSBInsertEvent(Directory drive);
 
     void onUSBRemoveEvent();
 

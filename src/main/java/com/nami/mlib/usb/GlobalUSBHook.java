@@ -1,6 +1,6 @@
 package com.nami.mlib.usb;
 
-import com.nami.mlib.Folder;
+import com.nami.mlib.Directory;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -53,7 +53,7 @@ public class GlobalUSBHook {
                         continue;
 
                     usb.add(name);
-                    listeners.forEach((l) -> l.onUSBInsertEvent(new Folder(f)));
+                    listeners.forEach((l) -> l.onUSBInsertEvent(new Directory(f)));
                 }
 
                 try {

@@ -3,17 +3,17 @@ package com.nami.mlib;
 import java.io.File;
 import java.io.IOException;
 
-public class Folder {
+public class Directory {
 
     private final File root;
 
-    public Folder(String rootPath) {
+    public Directory(String rootPath) {
         this.root = new File(rootPath);
         if (!root.exists())
             root.mkdirs();
     }
 
-    public Folder(File file) {
+    public Directory(File file) {
         this.root = file;
         if (!root.exists())
             root.mkdirs();
@@ -30,12 +30,12 @@ public class Folder {
         return file;
     }
 
-    public Folder folder(String subPath) {
+    public Directory folder(String subPath) {
         File file = rawFile(subPath);
         if (!file.exists())
             file.mkdirs();
 
-        return new Folder(file);
+        return new Directory(file);
     }
 
     private File rawFile(String subPath) {
