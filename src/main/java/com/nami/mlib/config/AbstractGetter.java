@@ -1,9 +1,15 @@
 package com.nami.mlib.config;
 
-public record AbstractGetter(Object object) {
+public class AbstractGetter{
+
+    private final Object value;
+
+    public AbstractGetter(Object value) {
+        this.value = value;
+    }
 
     public Object asObject() {
-        return object();
+        return value;
     }
 
     public String asString() {

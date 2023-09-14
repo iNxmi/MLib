@@ -1,9 +1,21 @@
 package com.nami.mlib.config;
 
-public record Value(String key, Object value) {
+public class Value {
 
-    public static Value of(String key, Object value) {
-        return new Value(key, value);
+    private final String key;
+    private final Object value;
+
+    public Value(String key, Object value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public String key() {
+        return key;
+    }
+
+    public Object value() {
+        return value;
     }
 
 }

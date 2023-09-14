@@ -6,10 +6,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
-public record Config(File file, Map<String, Object> map) {
+public class Config {
+
+    private final File file;
+    private final TreeMap<String, Object> map;
 
     private Config(File file, List<Value> defaults) throws IOException {
-        this(file, new TreeMap<>());
+        this.file = file;
+        this.map = new TreeMap<>();
 
         //Load default values
         defaults.forEach(l -> {
@@ -23,7 +27,7 @@ public record Config(File file, Map<String, Object> map) {
         prop.load(new FileReader(file));
 
         List<Value> values = new ArrayList<>();
-        prop.forEach((k, v) -> values.add(Value.of((String) k, v)));
+        prop.forEach((k, v) -> values.add(new Value((String) k, v)));
         setValues(values);
     }
 
@@ -48,6 +52,14 @@ public record Config(File file, Map<String, Object> map) {
         map().forEach((key, value) -> sb.append(String.format("%s=%s\n", key, value)));
 
         Files.write(file().toPath(), sb.toString().trim().getBytes());
+    }
+
+    public File file() {
+        return file;
+    }
+
+    public Map<String, Object> map() {
+        return map;
     }
 
     @Override
